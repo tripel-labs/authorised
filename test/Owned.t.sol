@@ -19,31 +19,29 @@ contract TestOwned is Test {
         assertEq(c.owner(), alice);
     }
 
-    function testProtected(address caller) public {
-        _testProtected(caller);
+    function testProtected() public {
         _testProtected(alice);
         _testProtected(bob);
     }
 
-    function testUnprotected(address caller) public {
-        _testUnprotected(caller);
+    function testUnprotected() public {
         _testUnprotected(alice);
         _testUnprotected(bob);
     }
 
-    function testChangeOnwer(address newOwner) public {
+    function testChangeOnwer() public {
         vm.prank(alice);
-        c.setOwner(newOwner);
-        assertEq(c.owner(), newOwner);
+        c.setOwner(bob);
+        assertEq(c.owner(), bob);
         
+        _testProtected(address(this));
+        _testUnprotected(address(this));
         _testProtected(bob);
         _testUnprotected(bob);
-        _testProtected(newOwner);
-        _testUnprotected(newOwner);
 
         vm.expectRevert(Unauthorised);
         c.setOwner(alice);
-        vm.prank(newOwner);
+        vm.prank(bob);
         c.setOwner(alice);
         assertEq(c.owner(), alice);
     }

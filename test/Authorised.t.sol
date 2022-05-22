@@ -21,36 +21,32 @@ contract TestAuthorised is Test {
         assertTrue(!c.authorised(bob));
     }
 
-    function testProtected(address caller) public {
-        _testProtected(caller);
+    function testProtected() public {
         _testProtected(alice);
         _testProtected(bob);
     }
 
-    function testUnprotected(address caller) public {
-        _testUnprotected(caller);
+    function testUnprotected() public {
         _testUnprotected(alice);
         _testProtected(bob);
     }
 
-    function testSetAuthorised(address user) public {
+    function testSetAuthorised() public {
         vm.prank(alice);
-        c.setAuthorised(user, true);
-        assertTrue(c.authorised(user));
+        c.setAuthorised(bob, true);
+        assertTrue(c.authorised(bob));
 
-        _testProtected(user);
         _testProtected(alice);
         _testProtected(bob);
-        _testUnprotected(user);
         _testUnprotected(alice);
         _testUnprotected(bob);
 
         vm.prank(alice);
-        c.setAuthorised(user, false);
-        assertTrue(!c.authorised(user));
+        c.setAuthorised(bob, false);
+        assertTrue(!c.authorised(bob));
 
-        _testProtected(user);
-        _testUnprotected(user);
+        _testProtected(bob);
+        _testUnprotected(bob);
     }
 
     function testSetPermissions() public {
