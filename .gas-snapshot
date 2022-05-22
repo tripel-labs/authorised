@@ -1,1 +1,7 @@
-TestContract:testBar() (gas: 401)
+TestAuthorised:testProtected() (gas: 47105)
+TestAuthorised:testSetAuthorised() (gas: 64064)
+TestAuthorised:testSetPermissions() (gas: 42880)
+TestAuthorised:testUnprotected() (gas: 43842)
+TestOwned:testChangeOnwer() (gas: 36811)
+TestOwned:testProtected() (gas: 23629)
+TestOwned:testUnprotected() (gas: 19124)
