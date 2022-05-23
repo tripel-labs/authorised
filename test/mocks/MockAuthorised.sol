@@ -17,7 +17,7 @@ contract MockAuthorised is Authorised {
         value = v;
     }
 
-    function authorisedProtectedFunction(bool v) public isAuthorised {
+    function authorisedProtectedFunction(bool v) public onlyAuthorised {
         value = v;
     }
 }

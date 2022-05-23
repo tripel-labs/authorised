@@ -9,7 +9,7 @@ abstract contract Authorised is Owned {
 
     mapping(address => bool) public authorised;
 
-    modifier isAuthorised() {
+    modifier onlyAuthorised() {
         if (!authorised[msg.sender]) revert Unauthorised();
         _;
     }
