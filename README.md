@@ -3,7 +3,7 @@
 ## Getting Started
 
 ```sh
-forge install gasperbr/authorised
+forge install tripel-labs/authorised
 ```
 
 ## Development
